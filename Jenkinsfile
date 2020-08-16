@@ -1,8 +1,11 @@
 pipeline {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
     agent any
-    tools {
-        maven 'Maven 3.3.9'
-        jdk 'jdk8'
+    tools { 
+        maven 'maven3' 
+        jdk 'jdk8' 
     }
     stages {
         stage ('Initialize') {
@@ -10,14 +13,13 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                '''
+                ''' 
             }
         }
-
-        stage ('Build') {
+        stage('Build') {
             steps {
-                echo 'This is a minimal pipeline.'
-                sh 'mvn clean install'
+               echo 'This is a minimal pipeline.'
+               sh 'mvn clean install'
             }
         }
     }
