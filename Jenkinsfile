@@ -18,13 +18,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-               echo 'This is a minimal pipeline.'
-               sh 'mvn clean install'
+               echo 'Building ... '
+               sh 'mvn clean install -DskipTests'
             }
         }
         stage('Test'){
                     steps {
-                        sh 'make check'
+                      echo 'Testing ... '
+                        sh 'mvn test'
                         junit 'target/surefire-reports/*.xml'
                     }
                 }
