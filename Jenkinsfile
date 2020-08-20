@@ -3,9 +3,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
     agent any
-    tools { 
-        maven 'maven3' 
-        jdk 'jdk11' 
+    tools {
+        maven 'maven3'
+        jdk 'jdk11'
     }
     stages {
         stage ('Initialize') {
@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                ''' 
+                '''
             }
         }
         stage('Build') {
@@ -22,5 +22,11 @@ pipeline {
                sh 'mvn clean install'
             }
         }
+        stage('Test'){
+                    steps {
+                        sh 'make check'
+                        junit 'target/surefire-reports/*.xml'
+                    }
+                }
     }
 }
