@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 public class SQSConfiguration {
 
     @Bean
-    @Profile("local")
+    //@Profile("local")
     public AmazonSQS sqs(@Value("${aws.local.endpoint}") String localEndpoint,
         @Value("${aws.local.region}") String localRegion) {
 
@@ -24,7 +24,7 @@ public class SQSConfiguration {
     }
 
     @Bean
-    @Profile("!local")
+    //@Profile("!local")
     public AmazonSQS sqs() {
         return AmazonSQSClientBuilder.standard().build();
     }
