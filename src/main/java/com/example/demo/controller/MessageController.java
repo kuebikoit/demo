@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.SQSService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ public class MessageController {
 
     private final SQSService service;
 
+    @Autowired
     public MessageController(SQSService service) {
         this.service = service;
     }
