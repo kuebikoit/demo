@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class DemoApplicationTests {
 
-  @Test
+  //@Test
   void contextLoads() {
     System.out.println("dummy test");
   }
